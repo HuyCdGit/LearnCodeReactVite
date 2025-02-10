@@ -5,7 +5,13 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-
+  // function myFunction() {
+  //   console.log("Run my Function");
+  // }
+  const myFunction = () => {
+    console.log("Run my Function");
+  };
+  myFunction();
   return (
     <>
       <div>
