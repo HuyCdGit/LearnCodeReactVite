@@ -1,4 +1,7 @@
-const TodoNew = () => {
+const TodoNew = (props) => {
+  console.log("check point: ", props);
+  const { addNewTodo } = props;
+  addNewTodo("example");
   return (
     <form className="NewTodoForm" /*onSubmit={handleSubmit}*/>
       <label htmlFor="task">New todo</label>
