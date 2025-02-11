@@ -3,12 +3,13 @@ import { useState } from "react";
 const TodoNew = (props) => {
   //useState Hook (getter/setter)
   //Array Destructuring
-  const [valueInput, setValueInput] = useState("test useState");
+  const [valueInput, setValueInput] = useState("");
   console.log("check point: ", props);
   const { addNewTodo } = props;
   //   addNewTodo("example");
   const handleClick = () => {
     addNewTodo(valueInput);
+    setValueInput("");
   };
   //cách 1
   //   const handleOnChange = (event) => {
@@ -30,12 +31,12 @@ const TodoNew = (props) => {
         onChange={(event) => {
           handleOnChange(event.target.value);
         }}
+        value={valueInput}
         type="text"
         placeholder="New Todo"
       />
 
       <button onClick={handleClick}>Add Todo</button>
-      <div>My text input is= {valueInput}</div>
     </div>
   );
 };
