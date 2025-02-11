@@ -4,10 +4,9 @@ import TodoNew from "./components/todo/todonew";
 import ReactLogo from "./assets/react.svg";
 import { useState } from "react";
 function App() {
-  const [todoList, setTodoList] = useState([
-    { id: 1, name: "Learning React" },
-    { id: 2, name: "Watching React" },
-  ]);
+  const [todoList, setTodoList] = useState([]);
+  // { id: 1, name: "Learning React" },
+  // { id: 2, name: "Watching React" },
   const name = "example";
   const age = 25;
   const data = {
