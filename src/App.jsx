@@ -23,6 +23,10 @@ function App() {
   const ramdomIntFromInterval = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
+  const deletetodo = (id) => {
+    const newTodo = todoList.filter((item) => item.id !== id);
+    setTodoList(newTodo);
+  };
   return (
     <div className="TodoList">
       <h1>
@@ -31,7 +35,13 @@ function App() {
       <TodoNew addNewTodo={addNewTodo} />
       {todoList.length > 0 ? (
         <ul>
-          <TodoData name={name} age={age} data={data} todoList={todoList} />
+          <TodoData
+            name={name}
+            age={age}
+            data={data}
+            todoList={todoList}
+            deletetodo={deletetodo}
+          />
         </ul>
       ) : (
         <div className="todo-image">
