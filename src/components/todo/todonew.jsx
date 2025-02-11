@@ -4,7 +4,6 @@ const TodoNew = (props) => {
   //useState Hook (getter/setter)
   //Array Destructuring
   const [valueInput, setValueInput] = useState("");
-  console.log("check point: ", props);
   const { addNewTodo } = props;
   //   addNewTodo("example");
   const handleClick = () => {

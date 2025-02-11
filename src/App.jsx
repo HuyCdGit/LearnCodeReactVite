@@ -29,12 +29,15 @@ function App() {
         Todo List <span>A simple React Todo List App</span>
       </h1>
       <TodoNew addNewTodo={addNewTodo} />
-      <ul>
-        <TodoData name={name} age={age} data={data} todoList={todoList} />
-      </ul>
-      <div className="todo-image">
-        <img src={ReactLogo} className="todo-image" className="logo" />
-      </div>
+      {todoList.length > 0 ? (
+        <ul>
+          <TodoData name={name} age={age} data={data} todoList={todoList} />
+        </ul>
+      ) : (
+        <div className="todo-image">
+          <img src={ReactLogo} className="todo-image, logo" />
+        </div>
+      )}
     </div>
   );
 }
