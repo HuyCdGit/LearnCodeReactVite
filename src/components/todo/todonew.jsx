@@ -1,9 +1,14 @@
+import { useState } from "react";
+
 const TodoNew = (props) => {
+  //useState Hook (getter/setter)
+  //Array Destructuring
+  const [valueInput, setValueInput] = useState("test useState");
   console.log("check point: ", props);
-  //   const { addNewTodo } = props;
+  const { addNewTodo } = props;
   //   addNewTodo("example");
   const handleClick = () => {
-    alert("click me");
+    addNewTodo(valueInput);
   };
   //cách 1
   //   const handleOnChange = (event) => {
@@ -12,9 +17,10 @@ const TodoNew = (props) => {
   //cách 2
   const handleOnChange = (name) => {
     console.log("handle onchange", name);
+    setValueInput(name);
   };
   return (
-    <form className="NewTodoForm" /*onSubmit={handleSubmit}*/>
+    <div className="NewTodoForm" /*onSubmit={handleOnSubmit}*/>
       <label htmlFor="task">New todo</label>
       <input
         // value={userInput.task}
@@ -24,15 +30,13 @@ const TodoNew = (props) => {
         onChange={(event) => {
           handleOnChange(event.target.value);
         }}
-        id="task"
         type="text"
-        name="task"
         placeholder="New Todo"
       />
-      <button style={{ cursor: "pointer" }} onClick={handleClick}>
-        Add Todo
-      </button>
-    </form>
+
+      <button onClick={handleClick}>Add Todo</button>
+      <div>My text input is= {valueInput}</div>
+    </div>
   );
 };
 
