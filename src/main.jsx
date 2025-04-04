@@ -6,7 +6,7 @@ import LoginPage from "./pages/login.jsx";
 import RegisterPage from "./pages/register.jsx";
 import UserPage from "./pages/user.jsx";
 import ProductPage from "./pages/product.jsx";
-
+import "./components/layout/global.css";
 const router = createBrowserRouter([
   {
     path: "/",

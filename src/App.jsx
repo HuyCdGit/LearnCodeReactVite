@@ -3,6 +3,8 @@ import TodoData from "./components/todo/tododata";
 import TodoNew from "./components/todo/todonew";
 import ReactLogo from "./assets/react.svg";
 import { useState } from "react";
+import Header from "./components/layout/header";
+import Footer from "./components/layout/footer";
 function App() {
   const [todoList, setTodoList] = useState([]);
   // { id: 1, name: "Learning React" },
@@ -28,27 +30,31 @@ function App() {
     setTodoList(newTodo);
   };
   return (
-    <div className="TodoList">
-      <h1>
-        Todo List <span>A simple React Todo List App</span>
-      </h1>
-      <TodoNew addNewTodo={addNewTodo} />
-      {todoList.length > 0 ? (
-        <ul>
-          <TodoData
-            name={name}
-            age={age}
-            data={data}
-            todoList={todoList}
-            deletetodo={deletetodo}
-          />
-        </ul>
-      ) : (
-        <div className="todo-image">
-          <img src={ReactLogo} className="todo-image, logo" />
-        </div>
-      )}
-    </div>
+    <>
+      <Header />
+      <div className="TodoList">
+        <h1>
+          Todo List <span>A simple React Todo List App</span>
+        </h1>
+        <TodoNew addNewTodo={addNewTodo} />
+        {todoList.length > 0 ? (
+          <ul>
+            <TodoData
+              name={name}
+              age={age}
+              data={data}
+              todoList={todoList}
+              deletetodo={deletetodo}
+            />
+          </ul>
+        ) : (
+          <div className="todo-image">
+            <img src={ReactLogo} className="todo-image, logo" />
+          </div>
+        )}
+      </div>
+      <Footer />
+    </>
   );
 }
 
