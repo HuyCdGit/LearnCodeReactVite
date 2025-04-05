@@ -1,11 +1,8 @@
-import "./components/todo/todo.css";
-import TodoData from "./components/todo/tododata";
-import TodoNew from "./components/todo/todonew";
-import ReactLogo from "./assets/react.svg";
+import TodoData from "./tododata";
+import TodoNew from "./todonew";
+import "./todo.css";
+import ReactLogo from "../../assets/react.svg";
 import { useState } from "react";
-import Header from "./components/layout/header";
-import Footer from "./components/layout/footer";
-import { Outlet } from "react-router-dom";
 
 const TodoApp = () => {
   const [todoList, setTodoList] = useState([]);
@@ -55,14 +52,5 @@ const TodoApp = () => {
     </div>
   );
 };
-function App() {
-  return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  );
-}
 
-export default App;
+export default TodoApp;
