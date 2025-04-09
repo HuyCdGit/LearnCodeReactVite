@@ -2,7 +2,7 @@ import "./footer.css";
 const Footer = () => {
   return (
     <div className="footer">
-      <p>React Vite - @XUAN</p>
+      <p>React Vgite - @XUAN</p>
     </div>
   );
 };

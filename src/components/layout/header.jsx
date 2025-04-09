@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
 import "./header.css";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  console.log(">>>> check data", { user });
   return (
     <ul>
       <li>
