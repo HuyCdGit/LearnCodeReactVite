@@ -5,8 +5,12 @@ import { useState, useEffect } from "react";
 const UserPage = () => {
   //lift up state
   const [dataUsers, setDataUsers] = useState([]);
+  // next data = pre data
   useEffect(() => {
-    loadUser();
+    // loadUser();
+    (async () => {
+      await loadUser();
+    })();
   }, []);
   const loadUser = async () => {
     const res = await fetchAllUserAPI();

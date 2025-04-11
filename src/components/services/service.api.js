@@ -36,6 +36,14 @@ const fetchAllUserAPI = () => {
     },
   });
 };
-const deleteUserAPI = () => {};
+const deleteUserAPI = (id) => {
+  console.log(">> check userid: ", id);
+  const URL_BACKEND = `/api/v1/user/${id}`;
+  return axios.delete(URL_BACKEND, {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("access_token"),
+    },
+  });
+};
 
 export { createUserAPI, updateUserAPI, deleteUserAPI, fetchAllUserAPI };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Input, Modal, notification } from "antd";
+import { Input, Modal } from "antd";
 import { updateUserAPI } from "../services/service.api";
 
 const UpdateUserModal = (props) => {
@@ -15,6 +15,7 @@ const UpdateUserModal = (props) => {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  //mount -> update -> unmount
   useEffect(() => {
     console.log(">>> check dataUpdate props", dataUpdate);
     if (dataUpdate) {
@@ -27,10 +28,6 @@ const UpdateUserModal = (props) => {
   const handleSubmit = async () => {
     const res = await updateUserAPI(id, fullName, phoneNumber);
     if (res.data.data) {
-      notification.success({
-        message: "Update user",
-        description: "Cập nhật thành công user",
-      });
       resetAndCloseModal();
       await loadUser();
     }

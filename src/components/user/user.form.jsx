@@ -1,6 +1,8 @@
 import { Input, Button, notification, Modal } from "antd";
 import { useState } from "react";
 import { createUserAPI } from "../services/service.api";
+import UserViewDetail from "./user.view.detail";
+
 const UserForm = (props) => {
   const { loadUser } = props;
   const [fullName, setFullName] = useState("");
@@ -34,6 +36,7 @@ const UserForm = (props) => {
     <div className="user-form" style={{ margin: "20px 0" }}>
       <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <UserViewDetail />
           <h3>Table Users</h3>
           <Button onClick={() => setIsModalOpen(true)} type="primary">
             Create User
