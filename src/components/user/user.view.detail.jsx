@@ -1,7 +1,8 @@
 import { Drawer } from "antd";
 import { useState } from "react";
 const UserViewDetail = (props) => {
-  const { isopenDrawer, setIsOpenDrawer, dataDetail, setDataDetail } = props;
+  const { isopenDrawer, setIsOpenDrawer, dataDetail, setDataDetail, loadUser } =
+    props;
 
   //preview image
   const [selectedFile, setSelectedFile] = useState();
@@ -24,9 +25,11 @@ const UserViewDetail = (props) => {
     <Drawer
       width={"40vw"}
       title="Close Detail"
-      onClose={() => {
-        setIsOpenDrawer(false);
+      onClose={async () => {
+        setPreview(null);
         setDataDetail(null);
+        await loadUser();
+        setIsOpenDrawer(false);
       }}
       open={isopenDrawer}
     >
@@ -85,7 +88,6 @@ const UserViewDetail = (props) => {
               marginTop: "10px",
               height: "100px",
               width: "150px",
-              border: "1px solid #ccc",
             }}
           >
             {preview && (

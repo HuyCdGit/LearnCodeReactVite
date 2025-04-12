@@ -92,6 +92,7 @@ const UserTable = (props) => {
         setIsOpenDrawer={setIsOpenDrawer}
         dataDetail={dataDetail}
         setDataDetail={setDataDetail}
+        loadUser={loadUser}
       />
     </>
   );
