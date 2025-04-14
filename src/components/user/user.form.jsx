@@ -4,6 +4,7 @@ import { createUserAPI } from "../services/service.api";
 import UserViewDetail from "./user.view.detail";
 
 const UserForm = (props) => {
+  //controller
   const { loadUser } = props;
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");

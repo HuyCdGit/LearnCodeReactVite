@@ -27,7 +27,7 @@ const UpdateUserModal = (props) => {
 
   const handleSubmit = async () => {
     const res = await updateUserAPI(id, fullName, phoneNumber);
-    if (res.data.data) {
+    if (res.data) {
       resetAndCloseModal();
       await loadUser();
     }
@@ -47,7 +47,7 @@ const UpdateUserModal = (props) => {
       open={isModalUpdateOpen}
       onOk={() => handleSubmit()}
       onCancel={() => resetAndCloseModal()}
-      maskClosable={false}
+      maskClosable={true}
       okText={"SAVE"}
     >
       <div>

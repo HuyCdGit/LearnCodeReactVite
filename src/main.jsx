@@ -11,6 +11,8 @@ import TodoApp from "./components/todo/todoapp.jsx";
 import ErrorPage from "./pages/error.jsx";
 import LoginPage from "./pages/login.jsx";
 import { AuthWrapper } from "./components/context/auth.context.jsx";
+import { App as AppAntd } from "antd";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,12 +31,13 @@ const router = createBrowserRouter([
         path: "/books",
         element: <Bookpage />,
       },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
     ],
   },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
+
   {
     path: "/register",
     element: <RegisterPage />,
@@ -45,7 +48,9 @@ createRoot(document.getElementById("root")).render(
   //   {/* <App /> */}
   //   <RouterProvider router={router} />
   // </StrictMode>
-  <AuthWrapper>
-    <RouterProvider router={router} />
-  </AuthWrapper>
+  <AppAntd>
+    <AuthWrapper>
+      <RouterProvider router={router} />
+    </AuthWrapper>
+  </AppAntd>
 );

@@ -15,7 +15,7 @@ const UserTable = (props) => {
     setCurrent,
     setPageSize,
   } = props;
-  const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(true);
+  const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
   const [isopenDrawer, setIsOpenDrawer] = useState(false);
   const [dataDetail, setDataDetail] = useState(null);

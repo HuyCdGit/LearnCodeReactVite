@@ -46,4 +46,30 @@ const deleteUserAPI = (id) => {
   });
 };
 
-export { createUserAPI, updateUserAPI, deleteUserAPI, fetchAllUserAPI };
+const resgisterUserAPI = (fullName, email, password, phone) => {
+  const URL_BACKEND = "/api/v1/user/register";
+  const data = {
+    fullName: fullName,
+    email: email,
+    password: password,
+    phone: phone,
+  };
+  return axios.post(URL_BACKEND, data);
+};
+const loginUserAPI = (userName, password) => {
+  const URL_BACKEND = "api/v1/auth/login";
+  const data = {
+    username: userName,
+    password: password,
+    delay: 5000,
+  };
+  return axios.post(URL_BACKEND, data);
+};
+export {
+  createUserAPI,
+  updateUserAPI,
+  deleteUserAPI,
+  fetchAllUserAPI,
+  resgisterUserAPI,
+  loginUserAPI,
+};
