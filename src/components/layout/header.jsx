@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Menu } from "antd";
+import { Menu, message } from "antd";
 import {
   HomeOutlined,
   UsergroupAddOutlined,
@@ -8,12 +8,31 @@ import {
   LoginOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logoutUserAPI } from "../services/service.api";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [current, setCurrent] = useState("");
-  console.log(">>>> check data", { user });
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    const res = await logoutUserAPI();
+    if (res.data) {
+      localStorage.removeItem("access_token");
+      setUser({
+        email: "",
+        phone: "",
+        fullName: "",
+        role: "",
+        avatar: "",
+        id: "",
+      });
+      message.info(res.data);
+      navigate("/");
+    } else {
+      message.error(res.data);
+    }
+  };
   const items = [
     {
       label: <Link to={"/"}>Home</Link>,
@@ -66,7 +85,7 @@ const Header = () => {
             icon: <SettingOutlined />,
             children: [
               {
-                label: "Logout",
+                label: <span onClick={() => handleLogout()}>Logout</span>,
                 key: "logout",
               },
             ],
