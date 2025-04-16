@@ -52,5 +52,5 @@ createRoot(document.getElementById("root")).render(
     <AuthWrapper>
       <RouterProvider router={router} />
     </AuthWrapper>
-  </AppAntd>
+  </AppAntd> 
 );

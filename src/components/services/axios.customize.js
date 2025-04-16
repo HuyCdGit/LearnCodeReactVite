@@ -9,9 +9,19 @@ const instance = axios.create({
 // instance.defaults.headers.common["Authorization"] = AUTH_TOKEN;
 
 // Add a request interceptor
-axios.interceptors.request.use(
+instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    console.log(">>> check token", window.localStorage.getItem("access_token"));
+    if (
+      typeof window !== "undefined" &&
+      window &&
+      window.localStorage &&
+      window.localStorage.getItem("access_token")
+    ) {
+      config.headers.Authorization =
+        "Bearer " + window.localStorage.getItem("access_token");
+    }
     return config;
   },
   function (error) {
@@ -21,7 +31,7 @@ axios.interceptors.request.use(
 );
 
 // Add a response interceptor
-axios.interceptors.response.use(
+instance.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data

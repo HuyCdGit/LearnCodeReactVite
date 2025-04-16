@@ -5,6 +5,8 @@ import {
   HomeOutlined,
   UsergroupAddOutlined,
   ProductOutlined,
+  LoginOutlined,
+  SettingOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -46,6 +48,31 @@ const Header = () => {
         },
       ],
     },
+    ...(!user.id
+      ? [
+          {
+            label: <Link to={"login"}>Login</Link>,
+            key: "login",
+            icon: <LoginOutlined />,
+          },
+        ]
+      : []),
+
+    ...(user.id
+      ? [
+          {
+            label: <Link to={"/"}>Welcome {user.fullName}</Link>,
+            key: "home",
+            icon: <SettingOutlined />,
+            children: [
+              {
+                label: "Logout",
+                key: "logout",
+              },
+            ],
+          },
+        ]
+      : []),
   ];
 
   const onClick = (e) => {

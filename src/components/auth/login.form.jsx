@@ -4,28 +4,34 @@ import { useNavigate } from "react-router";
 import { loginUserAPI } from "../services/service.api";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const [form] = useForm();
   const { message } = AppAntd.useApp();
-  const [isLoading, setIsloading] = useState(false);
+  // const [isLoading, setIsloading] = useState(false);
+
+  //use context
+  const { setUser } = useContext(AuthContext);
   const onFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
   const onFinish = async (values) => {
-    setIsloading(true);
+    // setIsloading(true);
     const res = await loginUserAPI(values.userName, values.password);
-    console.log(">>> check message Error: ", res);
-    if (res.data.data) {
-      message.success("Đăng nhập thành công!");
+    if (res.data) {
+      console.log("check message data", res.data);
+      // message.success("Đăng nhập thành công!");
+      message.success(`${res.message}`);
+      localStorage.setItem("access_token", res.data.access_token);
+      setUser(res.data.user);
       navigate("/");
-    }
-    if (res.message) {
+    } else {
       message.error(`${res.message}`);
     }
-    setIsloading(false);
+    // setIsloading(false);
   };
 
   return (
@@ -75,7 +81,11 @@ const LoginForm = () => {
                 },
               ]}
             >
-              <Input.Password />
+              <Input.Password
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") form.submit();
+                }}
+              />
             </Form.Item>
             <div
               style={{
@@ -85,7 +95,7 @@ const LoginForm = () => {
               }}
             >
               <Button
-                loading={isLoading}
+                // loading={isLoading}
                 type="primary"
                 onClick={() => form.submit()}
               >
