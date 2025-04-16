@@ -12,6 +12,7 @@ import ErrorPage from "./pages/error.jsx";
 import LoginPage from "./pages/login.jsx";
 import { AuthWrapper } from "./components/context/auth.context.jsx";
 import { App as AppAntd } from "antd";
+import PrivateRouter from "./pages/private.router.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,17 +26,25 @@ const router = createBrowserRouter([
       },
       {
         path: "/users",
-        element: <UserPage />,
+        element: (
+          <PrivateRouter>
+            <UserPage />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/books",
-        element: <Bookpage />,
-      },
-      {
-        path: "/login",
-        element: <LoginPage />,
+        element: (
+          <PrivateRouter>
+            <Bookpage />
+          </PrivateRouter>
+        ),
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
 
   {
@@ -52,5 +61,5 @@ createRoot(document.getElementById("root")).render(
     <AuthWrapper>
       <RouterProvider router={router} />
     </AuthWrapper>
-  </AppAntd> 
+  </AppAntd>
 );

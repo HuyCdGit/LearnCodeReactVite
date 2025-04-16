@@ -12,7 +12,6 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    console.log(">>> check token", window.localStorage.getItem("access_token"));
     if (
       typeof window !== "undefined" &&
       window &&
