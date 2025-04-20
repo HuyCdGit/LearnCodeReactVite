@@ -27,7 +27,7 @@ const Header = () => {
         avatar: "",
         id: "",
       });
-      message.info(res.data);
+      message.info(res.message);
       navigate("/");
     } else {
       message.error(res.data);

@@ -54,14 +54,17 @@ const UserTable = (props) => {
           </Link>
         );
       },
+      key: "_id",
     },
     {
       title: "Full Name",
       dataIndex: "fullName",
+      key: "fullName",
     },
     {
       title: "Email",
       dataIndex: "email",
+      key: "email",
     },
     {
       title: "Action",
