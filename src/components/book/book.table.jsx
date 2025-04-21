@@ -135,6 +135,7 @@ const BookTable = (props) => {
         dataViewBook={dataViewBook}
         dataCategory={dataCategory}
         setDataCategory={setDataCategory}
+        loadbook={loadbook}
       />
       <BookViewDetail
         isViewBook={isViewBook}
