@@ -333,6 +333,7 @@ const BookForm = (props) => {
           <div
             style={{
               marginTop: "10px",
+              height: "100px",
               width: "150px",
             }}
           >

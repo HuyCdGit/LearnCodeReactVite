@@ -71,9 +71,9 @@ const BookViewDetail = (props) => {
             <br />
             <p>Giá tiền: {toVND(dataViewBook.price || 0)}</p>
             <br />
-            <p>Số lượng: {dataViewBook.quantity}</p>
+            <p>Số lượng: {dataViewBook.quantity || 0}</p>
             <br />
-            <p>Đã bán: {dataViewBook.sold}</p>
+            <p>Đã bán: {dataViewBook.sold || 0}</p>
             <div
               style={{
                 marginTop: "10px",

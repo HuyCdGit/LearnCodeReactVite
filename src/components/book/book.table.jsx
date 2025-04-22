@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import BookViewDetail from "./book.view.detail";
 import BookForm from "./book.form";
 import { fetchCategoryAPI } from "../services/service.book";
+import UpdateBook from "./book.update.controlled";
 const BookTable = (props) => {
   const {
     current,
@@ -39,7 +40,6 @@ const BookTable = (props) => {
       setDataCategory(resCategory.data);
     }
     resCategory.map((items) => setDataCategory(items));
-    console.log(">>>check dataCategory", dataCategory);
   };
 
   //Drawer
@@ -48,6 +48,9 @@ const BookTable = (props) => {
 
   //Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenUpdateBook, setIsModalOpenUpdateBook] = useState(false);
+  //data update book
+  const [dataUpdateBook, setDataUpdateBook] = useState();
   // pagination
   const columns = [
     {
@@ -100,9 +103,15 @@ const BookTable = (props) => {
     },
     {
       title: "Hành động",
-      render: () => (
+      render: (_, record) => (
         <div style={{ display: "Flex", gap: "20px" }}>
-          <EditOutlined style={{ cursor: "pointer", color: "orange" }} />
+          <EditOutlined
+            style={{ cursor: "pointer", color: "orange" }}
+            onClick={() => {
+              setIsModalOpenUpdateBook(true);
+              setDataUpdateBook(record);
+            }}
+          />
           <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
         </div>
       ),
@@ -129,6 +138,13 @@ const BookTable = (props) => {
   };
   return (
     <>
+      <UpdateBook
+        setDataUpdateBook={setDataUpdateBook}
+        dataUpdateBook={dataUpdateBook}
+        setIsModalOpenUpdateBook={setIsModalOpenUpdateBook}
+        isModalOpenUpdateBook={isModalOpenUpdateBook}
+        loadbook={loadbook}
+      />
       <BookForm
         setIsModalOpen={setIsModalOpen}
         isModalOpen={isModalOpen}

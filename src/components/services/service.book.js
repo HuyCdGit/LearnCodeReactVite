@@ -15,7 +15,7 @@ const createBookAPI = (
     author: author,
     price: price,
     quantity: quantity,
-    category: "Arts",
+    category: category,
   };
   return axios.post(BACKEND_URL, data);
 };
@@ -34,7 +34,7 @@ const updateBookAPI = (
   quantity,
   category
 ) => {
-  const BACKEND_URL = `/api/v1/book?${_id}`;
+  const BACKEND_URL = `/api/v1/book/${_id}`;
   const data = {
     thumbnail: thumbnail,
     slider: [0],
@@ -42,7 +42,7 @@ const updateBookAPI = (
     author: author,
     price: price,
     quantity: quantity,
-    category: "Arts",
+    category: category,
   };
   return axios.put(BACKEND_URL, data);
 };
