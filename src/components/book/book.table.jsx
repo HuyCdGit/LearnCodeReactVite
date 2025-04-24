@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import BookViewDetail from "./book.view.detail";
 import BookForm from "./book.form";
 import { fetchCategoryAPI } from "../services/service.book";
-import UpdateBook from "./book.update.controlled";
+import UpdateBookUncontrolled from "./book.update.uncontrolled";
 const BookTable = (props) => {
   const {
     current,
@@ -138,7 +138,14 @@ const BookTable = (props) => {
   };
   return (
     <>
-      <UpdateBook
+      {/* <UpdateBook
+        setDataUpdateBook={setDataUpdateBook}
+        dataUpdateBook={dataUpdateBook}
+        setIsModalOpenUpdateBook={setIsModalOpenUpdateBook}
+        isModalOpenUpdateBook={isModalOpenUpdateBook}
+        loadbook={loadbook}
+      /> */}
+      <UpdateBookUncontrolled
         setDataUpdateBook={setDataUpdateBook}
         dataUpdateBook={dataUpdateBook}
         setIsModalOpenUpdateBook={setIsModalOpenUpdateBook}

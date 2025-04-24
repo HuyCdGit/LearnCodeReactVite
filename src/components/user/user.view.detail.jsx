@@ -20,7 +20,6 @@ const UserViewDetail = (props) => {
       setPreview(URL.createObjectURL(file));
     }
   };
-  console.log(">>> check file", preview);
   return (
     <Drawer
       width={"40vw"}
