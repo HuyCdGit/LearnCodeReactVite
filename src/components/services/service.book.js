@@ -63,10 +63,17 @@ const handleUploadFile = (file, folder) => {
   bodyFormData.append("fileImg", file);
   return axios.post(BACKEND_URL, bodyFormData, config);
 };
+
+const deleteBookAPI = (_id) => {
+  const BACKEND_URL = `/api/v1/book/${_id}`;
+  return axios.delete(BACKEND_URL);
+};
+
 export {
   fetchBookAPI,
   fetchCategoryAPI,
   createBookAPI,
   handleUploadFile,
   updateBookAPI,
+  deleteBookAPI,
 };

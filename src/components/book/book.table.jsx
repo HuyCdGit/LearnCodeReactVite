@@ -1,10 +1,10 @@
-import { Table } from "antd";
+import { Table, Popconfirm, App as AntdApp } from "antd";
 import { Link } from "react-router-dom";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import BookViewDetail from "./book.view.detail";
 import BookForm from "./book.form";
-import { fetchCategoryAPI } from "../services/service.book";
+import { fetchCategoryAPI, deleteBookAPI } from "../services/service.book";
 import UpdateBookUncontrolled from "./book.update.uncontrolled";
 const BookTable = (props) => {
   const {
@@ -16,6 +16,7 @@ const BookTable = (props) => {
     total,
     loadbook,
   } = props;
+  const { notification } = AntdApp.useApxp();
   // convert VND
   const toVND = (value) => {
     value = value.toString().replace(/\./g, "");
@@ -34,6 +35,22 @@ const BookTable = (props) => {
     fetchCategory();
   }, []);
   const [dataCategory, setDataCategory] = useState([]);
+  const handleDeleteBook = async (_id) => {
+    const res = await deleteBookAPI(_id);
+    console.log(">>> check res delete book", res);
+    if (res.data) {
+      notification.success({
+        message: "Delete Success",
+        description: "Xóa book thành công",
+      });
+    } else {
+      notification.error({
+        message: "Delete Success",
+        description: "Xóa book không thành công",
+      });
+    }
+    await loadbook();
+  };
   const fetchCategory = async () => {
     const resCategory = await fetchCategoryAPI();
     if (resCategory.data) {
@@ -41,6 +58,11 @@ const BookTable = (props) => {
     }
     resCategory.map((items) => setDataCategory(items));
   };
+  //Popconfirm
+  const cancel = (Event) => {
+    console.log(Event);
+  };
+  ///
 
   //Drawer
   const [isViewBook, setIsViewBook] = useState(false);
@@ -112,7 +134,16 @@ const BookTable = (props) => {
               setDataUpdateBook(record);
             }}
           />
-          <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+          <Popconfirm
+            title="Delete the task"
+            description="Are you sure to delete this task?"
+            onConfirm={() => handleDeleteBook(record._id)}
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+          </Popconfirm>
         </div>
       ),
     },

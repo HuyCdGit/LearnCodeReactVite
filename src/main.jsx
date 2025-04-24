@@ -13,7 +13,7 @@ import LoginPage from "./pages/login.jsx";
 import { AuthWrapper } from "./components/context/auth.context.jsx";
 import { App as AppAntd } from "antd";
 import PrivateRouter from "./pages/private.router.jsx";
-
+import "nProgress/nprogress.css";
 const router = createBrowserRouter([
   {
     path: "/",
