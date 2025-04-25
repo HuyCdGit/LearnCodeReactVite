@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Menu, message } from "antd";
 import {
@@ -8,13 +8,26 @@ import {
   LoginOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logoutUserAPI } from "../services/service.api";
-
 const Header = () => {
   const { user, setUser } = useContext(AuthContext);
   const [current, setCurrent] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (location && location.pathname) {
+      const allRoutes = ["users", "books"];
+      const currentRoutes = allRoutes.find(
+        (items) => `/${items}` === location.pathname
+      );
+      if (currentRoutes) {
+        setCurrent(currentRoutes);
+      } else {
+        setCurrent("home");
+      }
+    }
+  }, [location]);
   const handleLogout = async () => {
     const res = await logoutUserAPI();
     if (res.data) {
@@ -48,24 +61,24 @@ const Header = () => {
       label: <Link to={"books"}>Books</Link>,
       key: "books",
       icon: <ProductOutlined />,
-      children: [
-        {
-          type: "group",
-          label: "Item 1",
-          children: [
-            { label: "Option 1", key: "setting:1" },
-            { label: "Option 2", key: "setting:2" },
-          ],
-        },
-        {
-          type: "group",
-          label: "Item 2",
-          children: [
-            { label: "Option 3", key: "setting:3" },
-            { label: "Option 4", key: "setting:4" },
-          ],
-        },
-      ],
+      // children: [
+      //   {
+      //     type: "group",
+      //     label: "Item 1",
+      //     children: [
+      //       { label: "Option 1", key: "setting:1" },
+      //       { label: "Option 2", key: "setting:2" },
+      //     ],
+      //   },
+      //   {
+      //     type: "group",
+      //     label: "Item 2",
+      //     children: [
+      //       { label: "Option 3", key: "setting:3" },
+      //       { label: "Option 4", key: "setting:4" },
+      //     ],
+      //   },
+      // ],
     },
     ...(!user.id
       ? [

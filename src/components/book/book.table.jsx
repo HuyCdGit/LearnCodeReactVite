@@ -16,7 +16,7 @@ const BookTable = (props) => {
     total,
     loadbook,
   } = props;
-  const { notification } = AntdApp.useApxp();
+  const { notification } = AntdApp.useApp();
   // convert VND
   const toVND = (value) => {
     value = value.toString().replace(/\./g, "");
